@@ -144,3 +144,4 @@ Ejecutamos
 $ cd ~/catkin_ws
 $ catkin_make
 ```
+Luego para correr los programas se ejecutan los siguientes comandos
