@@ -54,7 +54,7 @@ $ rosrun turtlesim turtle_teleop_key /turtle1/cmd_vel:=/cmd_vel
 ```
 # 2. COMUNICACIÓN ARDUINO - ROS
 
-#### En este proyecto se desarrollará una comunicación entre python y arduino, creando nodos propios de ros, donde arduino sera el publicador y python el suscriptor
+#### En este proyecto se desarrollará una comunicación entre python y arduino, creando nodos propios de ros, donde arduino sera el publicador y python el suscriptor. 
 ```sh
 $ roscd beginner_tutorials
 $ mkdir scripts
@@ -86,6 +86,7 @@ Ejecutamos
 $ cd ~/catkin_ws
 $ catkin_make
 ```
+Se deben instalar los drivers de arduino y las respectivas librerias de ROS, para este paso puede guiarse del siguiente link http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup
 
 #### Creamos los archivos necesarios para tener la comunicación, se enviarán datos enteros, flotantes y booleanos desde arduinos asi que existiran los siguientes archivos:
 
@@ -145,3 +146,76 @@ $ cd ~/catkin_ws
 $ catkin_make
 ```
 Luego para correr los programas se ejecutan los siguientes comandos
+
+Consola 1:
+```sh
+$ roscore
+```
+Consola 2: 
+```sh
+$ rosrun rosserail_python serial.node.py /dev/ttyUSB0 
+```
+El puerto puede ser USB0 o en otros casos ACM0
+Consola 3: 
+```sh
+$ cd catklin
+$ source /devel/setup.bash
+$ rosrun beginner_tutorials Nodo1.py
+```
+Consola 4: 
+```sh
+$ rosrun beginner_tutorials Nodo2.py
+```
+Consola 5: 
+```sh
+$ rosrun beginner_tutorials Nodo3.py
+```
+Consola 6: 
+```sh
+$ rosrun beginner_tutorials Nodo4.py
+```
+Consola 7: 
+```sh
+$ rosrun beginner_tutorials Nodo5.py
+```
+Consola 8: 
+```sh
+$ rosrun beginner_tutorials Nodo6.py
+```
+Consola 9: 
+```sh
+$ rosrun beginner_tutorials talker.py
+```
+# 3. Tracking camara ROS - Arduino
+
+#### En este proyecto se trabajará con python y arduiino, el archivo de python se llama talker_cam.py y se encuentra en la carpeta beginner_tutorial. El codigo de arduino se llama servo y se encuentra en la carpeta codigos_arduino. 
+
+El proyecto consta de seguir el centro de un objeto de color rojo.
+
+Los codigos estan explicados en sus respectivas carpetas.
+
+Editamos los permisos en el archivo CMakeLists.txt que se encuentra en la carpeta beginner_tutorials. Agregamos lo siguiente
+
+catkin_install_python(PROGRAMS scripts/Nodo1.py
+
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+
+)
+
+Luego para correr los programas se ejecutan los siguientes comandos
+
+Consola 1:
+```sh
+$ roscore
+```
+Consola 2: 
+```sh
+$ rosrun rosserail_python serial.node.py /dev/ttyUSB0 
+```
+El puerto puede ser USB0 o en otros casos ACM0
+Consola 3: 
+```sh
+$ cd catklin
+$ source /devel/setup.bash
+$ rosrun beginner_tutorials talker_cam.py
+```
