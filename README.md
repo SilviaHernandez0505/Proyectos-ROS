@@ -37,16 +37,25 @@ $ sudo apt-get install ros-kinetic-turtlebot
 $ sudo apt-get install ros-kinetic-arbotix
 ```
 En este punto ya se tiene todo instalado, verificamos el puerto en el que esta conectado el irobot
+
+Consola 1:
 ```sh
 $ cd/dev/ls
 
 $ sudo chmod 777 <puerto_serie>
-
+```
+Consola 2:
+```sh
 $ roscore
-
+```
+Consola 3:
+```sh
 $ roslaunch rbx1_bringup turtlebot_minimal_create.launch
 ```
 Pueden aparecer varias advertencias, esto pasa mientras se establece conexión con el irobot. También, puede que genere un error en donde dice revisar la batería del irobot, sin embargo, esto se puede solucionar dejando el irobot conectado a su cargador.
+
+Para rectificar si hay una conexión completa se revisa que las tres luces del cable de puerto serie estén encendidas
+![Captura de pantalla 2022-05-27 194534](https://user-images.githubusercontent.com/90077211/170803122-933fb665-7060-4200-b763-9484c086018e.png)
 
 Comando para mover el irobot con las teclas.
 ```sh
