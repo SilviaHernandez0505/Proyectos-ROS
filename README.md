@@ -205,7 +205,7 @@ Los codigos estan explicados en sus respectivas carpetas.
 
 Editamos los permisos en el archivo CMakeLists.txt que se encuentra en la carpeta beginner_tutorials. Agregamos lo siguiente
 
-catkin_install_python(PROGRAMS scripts/Nodo1.py
+catkin_install_python(PROGRAMS scripts/talker_cam.py
 
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 
@@ -222,6 +222,7 @@ Consola 2:
 $ rosrun rosserail_python serial.node.py /dev/ttyUSB0 
 ```
 El puerto puede ser USB0 o en otros casos ACM0
+
 Consola 3: 
 ```sh
 $ cd catklin
