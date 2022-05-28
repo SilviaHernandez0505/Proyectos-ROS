@@ -219,3 +219,4 @@ $ cd catklin
 $ source /devel/setup.bash
 $ rosrun beginner_tutorials talker_cam.py
 ```
+https://user-images.githubusercontent.com/90077211/170802984-52c0df38-4760-41b9-918a-c9ed8571fdcb.mp4
