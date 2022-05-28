@@ -61,6 +61,7 @@ Comando para mover el irobot con las teclas.
 ```sh
 $ rosrun turtlesim turtle_teleop_key /turtle1/cmd_vel:=/cmd_vel
 ```
+https://user-images.githubusercontent.com/90077211/170807235-4ed7783d-7d70-4708-9cb9-bdbf7cfbbd59.mp4
 # 2. COMUNICACIÓN ARDUINO - ROS
 
 #### En este proyecto se desarrollará una comunicación entre python y arduino, creando nodos propios de ros, donde arduino sera el publicador y python el suscriptor. 
