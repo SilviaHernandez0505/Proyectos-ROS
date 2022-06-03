@@ -1,7 +1,7 @@
 /* Template to use Open Cv inside ROS.
 /*
 /*   ROS tutorial
-/*   it was download from = http://wiki.ros.org/cv_bridge/Tutorials/UsingCvBridgeToConvertBetweenROSImagesAndOpenCVImages 
+/*   it was download from = http://wiki.ros.org/cv_bridge/Tutorials/UsingCvBridgeToConvertBetweenROSImagesAndOpenCVImages
 */
 
 #include <ros/ros.h>
@@ -13,6 +13,7 @@
 
 static const std::string OPENCV_WINDOW = "Image window";
 
+// CLASE IMAGE CONVERTER
 class ImageConverter
 {
   ros::NodeHandle nh_;
@@ -21,52 +22,55 @@ class ImageConverter
   image_transport::Publisher image_pub_;
 
 public:
+  // METODO CONSTRUCTOR
   ImageConverter()
-    : it_(nh_)
+      : it_(nh_)
   {
-    // Subscrive to input video feed and publish output video feed
+    // Suscríbase a la fuente de video de entrada y publique la fuente de video de salida
     image_sub_ = it_.subscribe("/usb_cam/image_raw", 1,
-      &ImageConverter::imageCb, this);
+                               &ImageConverter::imageCb, this);
     image_pub_ = it_.advertise("/image_converter/output_video", 1);
 
     cv::namedWindow(OPENCV_WINDOW);
   }
-
+  // METODO DESTRUCTOR
   ~ImageConverter()
   {
     cv::destroyWindow(OPENCV_WINDOW);
   }
 
-  void imageCb(const sensor_msgs::ImageConstPtr& msg)
+  void imageCb(const sensor_msgs::ImageConstPtr &msg)
   {
     cv_bridge::CvImagePtr cv_ptr;
     try
     {
       cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
     }
-    catch (cv_bridge::Exception& e)
+    catch (cv_bridge::Exception &e)
     {
       ROS_ERROR("cv_bridge exception: %s", e.what());
       return;
     }
 
-    // Draw an example circle on the video stream
+    // Dibujar un círculo de ejemplo en la transmisión de video
     if (cv_ptr->image.rows > 60 && cv_ptr->image.cols > 60)
-      cv::circle(cv_ptr->image, cv::Point(50, 50), 10, CV_RGB(255,0,0));
+      cv::circle(cv_ptr->image, cv::Point(50, 50), 10, CV_RGB(255, 0, 0));
 
-    // Update GUI Window
+    // Actualizar ventana GUI
     cv::imshow(OPENCV_WINDOW, cv_ptr->image);
-    cv::waitKey(3);
+    cv::waitKey(3); // Evento de teclado para cerrar ventana
 
-    // Output modified video stream
+    // Emitir flujo de video modificado
     image_pub_.publish(cv_ptr->toImageMsg());
   }
 };
 
-int main(int argc, char** argv)
+// Función principal
+int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "image_converter");
-  ImageConverter ic;
+  ros::init(argc, argv, "image_converter"); // Inicializa ros
+  ImageConverter ic;                        // Objeto de la clase definidata anteriormente
+  // Mantiene el nodo funcionando
   ros::spin();
   return 0;
 }
