@@ -1,5 +1,7 @@
 # Proyecto-ROS
 
+Los proyectos que se presentarán acontinuación fueron dirigidos y acompañados por el ingeniero Hernán Josué Hernández, en la materia de Sistemas Operacionales para Robotica. Visitar su repositorio https://github.com/herohernan
+
 ### 1. IROBOT_CREATE
 ### 2. Comunicación ROS - Arduino
 ### 3. Tracking camara ROS - Arduino
